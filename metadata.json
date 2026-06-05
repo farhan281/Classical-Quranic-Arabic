@@ -1,0 +1,6 @@
+{
+  "name": "Learn Classical Arabic",
+  "description": "An interactive, structured web application like W3Schools designed to teach the foundations of Classical Quranic Arabic. Includes detailed interactive lessons, structured quizzes, automatic verb conjugation playgrounds, and case-ending simulators.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
