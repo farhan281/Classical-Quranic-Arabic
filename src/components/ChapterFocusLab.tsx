@@ -1531,34 +1531,29 @@ export default function ChapterFocusLab({ chapter }: ChapterFocusLabProps) {
               </div>
             </div>
 
-            <div className="lg:col-span-8 flex flex-col justify-between bg-slate-900 text-white rounded-2xl p-6 text-center min-h-[290px]">
+            <div className="lg:col-span-8 bg-slate-900 text-white rounded-2xl p-6 text-center flex flex-col justify-between min-h-[220px]">
               <div>
-                <span className="text-[10px] text-emerald-400 uppercase tracking-widest font-mono font-black">Shadow agreement Phrase</span>
-                <div className="flex justify-center items-center gap-4 py-6">
-                  {/* Noun Card */}
-                  <div className="bg-white/5 border border-white/10 px-5 py-4 rounded-xl text-center flex-1">
-                    <span className="block text-[10px] text-slate-400 font-bold uppercase mb-1">Noun (Mausūf)</span>
-                    <span className="font-serif text-3xl font-bold block text-white">{finalNounArabic}</span>
+                <span className="text-[10px] text-emerald-400 font-mono tracking-widest uppercase block mb-1">LIVE AGREEMENT COUPLING</span>
+                <div className="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-8 py-5 rounded-2xl my-3">
+                  <div className="text-center">
+                    <span className="font-serif text-3.5xl font-black block text-emerald-300 tracking-wide leading-normal">
+                      {finalNounArabic}
+                    </span>
+                    <span className="text-[9px] uppercase font-black text-slate-400 font-mono tracking-wider">Mausūf (Noun)</span>
                   </div>
-                  {/* Plus Sign */}
-                  <span className="text-emerald-400 text-2xl font-black">+</span>
-                  {/* Adjective Card */}
-                  <div className="bg-emerald-50/5 border border-emerald-500/20 px-5 py-4 rounded-xl text-center flex-1">
-                    <span className="block text-[10px] text-emerald-400 font-bold uppercase mb-1">Adjective (Ṣifah)</span>
-                    <span className="font-serif text-3xl font-extrabold block text-emerald-400 leading-tight">{finalAdjArabic}</span>
+                  <div className="text-xl text-emerald-500 select-none">←</div>
+                  <div className="text-center">
+                    <span className="font-serif text-3.5xl font-black block text-emerald-300 tracking-wide leading-normal">
+                      {finalAdjArabic}
+                    </span>
+                    <span className="text-[9px] uppercase font-black text-slate-400 font-mono tracking-wider">Ṣifah (Adjective)</span>
                   </div>
                 </div>
               </div>
 
-              <div>
-                <span className="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-750 font-sans block text-slate-200 uppercase tracking-wider max-w-sm mx-auto">
-                  Translated phrase: {isDefAnd ? 'The' : 'A'} {selected.fem ? 'pious' : 'righteous'} {selected.eng.toLowerCase()}
-                </span>
-                {selected.clean === 'كُتُب' && (
-                  <div className="mt-3 text-[10px] text-amber-300 font-light max-w-md mx-auto">
-                    Note: Broken plurals of non-human items (like Books 'kutub') represent a single grammatical unit of <strong>Feminine Singular</strong>. Therefore, the adjective is feminised (صَالِحَة) instead of plurals!
-                  </div>
-                )}
+              <div className="bg-emerald-950/40 border border-emerald-900/65 p-3 rounded-xl text-xs text-slate-300 font-sans">
+                💡 <strong>Agreement Checked:</strong> 
+                <span className="text-emerald-400 ml-1 font-semibold">Gender ({selected.fem ? 'Feminine' : 'Masculine'}) | Count (Singular/Plural) | Definiteness ({isDefAnd ? 'Definite' : 'Indefinite'}) | Case ({tCase.toUpperCase()})</span>
               </div>
             </div>
           </div>
@@ -1566,14 +1561,18 @@ export default function ChapterFocusLab({ chapter }: ChapterFocusLabProps) {
       );
     }
 
-    // CHAPTER 9: Counting Rules 1-10
+    // CHAPTER 9: Counting Rules 1-10 and 11-19
     if (slug === 'arabic-numbers' || slug === 'nine') {
       const numbersAr = [
         { digits: 1, masc: 'وَاحِدٌ', fem: 'وَاحِدَةٌ', countMasc: 'رَجُلٌ وَاحِدٌ', countFem: 'بِنْتٌ وَاحِدَةٌ', rule: 'Matches Gender (Noun first, count adjective follows!)' },
-        { digits: 2, masc: 'اِثْنَانِ', fem: 'اِثْنَتَانِ', countMasc: 'رَجُلَانِ اِثْنَانِ', countFem: 'بِنْتَانِ اِثْنَتَانِ', rule: 'Matches Gender (Dual noun takes count suffix / backup)' },
+        { digits: 2, masc: 'اِثْنَانِ', fem: 'اِثْنَتَانِ', countMasc: 'رَجُلَانِ اِثْنَانِ', countFem: 'بِنْتَانِ اِثْنَتَانِ', rule: 'Matches Gender (Dual noun takes count suffix)' },
         { digits: 3, masc: 'ثَلَاثَةٌ', fem: 'ثَلَاثٌ', countMasc: 'ثَلَاثَةُ رِجَالٍ', countFem: 'ثَلَاثُ بَنَاتٍ', rule: 'Reverse gender rule: feminine count word, plural owner is genitive majroor' },
         { digits: 5, masc: 'خَمْسَةٌ', fem: 'خَمْسٌ', countMasc: 'خَمْسَةُ رِجَالٍ', countFem: 'خَمْسُ بَنَاتٍ', rule: 'Reverse gender rule: feminine count word, plural owner is genitive majroor' },
-        { digits: 10, masc: 'عَشَرَةٌ', fem: 'عَشْرٌ', countMasc: 'عَشَرَةُ رِجَالٍ', countFem: 'عَشْرُ بَنَاتٍ', rule: 'Reverse gender rule: feminine count word, plural owner is genitive majroor' }
+        { digits: 10, masc: 'عَشَرَةٌ', fem: 'عَشْرٌ', countMasc: 'عَشَرَةُ رِجَالٍ', countFem: 'عَشْرُ بَنَاتٍ', rule: 'Reverse gender rule: feminine count word, plural owner is genitive majroor' },
+        { digits: 11, masc: 'أَحَدَ عَشَرَ', fem: 'إِحْدَى عَشْرَةَ', countMasc: 'أَحَدَ عَشَرَ رَجُلًا', countFem: 'إِحْدَى عَشْرَةَ بِنْتًا', rule: 'Complete agreement! Part 1 and Part 2 agree with the singular accusative item (ending in Fathatain).' },
+        { digits: 12, masc: 'اِثْنَا عَشَرَ', fem: 'اِثْنَتَا عَشْرَةَ', countMasc: 'اِثْنَا عَشَرَ رَجُلًا', countFem: 'اِثْنَتَا عَشْرَةَ بِنْتًا', rule: 'Complete agreement! Part 1 and Part 2 agree with the singular accusative item (ending in Fathatain).' },
+        { digits: 13, masc: 'ثَلَاثَةَ عَشَرَ', fem: 'ثَلَاثَ عَشْرَةَ', countMasc: 'ثَلَاثَةَ عَشَرَ رَجُلًا', countFem: 'ثَلَاثَ عَشْرَةَ بِنْتًا', rule: 'Part 1 reverses gender, Part 2 agrees with noun gender.' },
+        { digits: 19, masc: 'تِسْعَةَ عَشَرَ', fem: 'تِسْعَ عَشْرَةَ', countMasc: 'تِسْعَةَ عَشَرَ رَجُلًا', countFem: 'تِسْعَ عَشْرَةَ بِنْتًا', rule: 'Part 1 reverses gender, Part 2 agrees with noun gender.' }
       ];
 
       const currentNum = numbersAr.find(n => n.digits === countNumber) || numbersAr[0];
@@ -1587,7 +1586,7 @@ export default function ChapterFocusLab({ chapter }: ChapterFocusLabProps) {
               <span className="text-[10px] uppercase font-black tracking-widest text-emerald-600 block mb-0.5">COUNT CONTROLLERS RULES</span>
               <h3 className="text-base font-bold text-slate-800">Reverse Gender Counting Generator</h3>
               <p className="text-xs text-slate-500 mt-1 max-w-xl font-sans">
-                Witness an eccentric rule in Quranic Arabic: numbers 1-2 match their gender with the item, but counts 3-10 use <strong>Reverse Gender polarity</strong>!
+                Witness an eccentric rule in Quranic Arabic: numbers 1-2 match their gender with the item, counts 3-10 use <strong>Reverse Gender polarity</strong>, and 11-19 combine matching and reverse rules!
               </p>
             </div>
             <div className="flex bg-slate-100 p-1 rounded-xl shrink-0 self-start md:self-center">
@@ -1599,21 +1598,26 @@ export default function ChapterFocusLab({ chapter }: ChapterFocusLabProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-3">
               <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Select Quantifier Count</span>
-              <div className="grid grid-cols-5 gap-1 bg-slate-100 p-1.5 rounded-xl">
-                {[1, 2, 3, 5, 10].map(n => (
-                  <button key={n} onClick={() => { setCountNumber(n); triggerSuccess(`Updated quantity count to ${n}!`); }} className={`p-2.5 text-xs font-extrabold font-mono rounded-lg cursor-pointer transition-all ${countNumber === n ? 'bg-slate-800 text-white shadow' : 'text-slate-500'}`}>{n}</button>
+              <div className="grid grid-cols-5 sm:grid-cols-9 gap-1 bg-slate-100 p-1.5 rounded-xl">
+                {[1, 2, 3, 5, 10, 11, 12, 13, 19].map(n => (
+                  <button key={n} onClick={() => { setCountNumber(n); triggerSuccess(`Updated quantity count to ${n}!`); }} className={`p-2 py-2 text-xs font-extrabold font-mono rounded-lg cursor-pointer transition-all ${countNumber === n ? 'bg-slate-800 text-white shadow' : 'text-slate-500'}`}>{n}</button>
                 ))}
               </div>
 
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs text-slate-600 leading-relaxed font-sans">
-                <strong>Crucial takeaway:</strong> Numbers 3-10 treat "Mudaf" as reverse gender and draw the counted noun into the plural genitive majroor (Kasrah) space automatically!
+              <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs text-slate-650 leading-relaxed font-sans">
+                <strong>Crucial Takeaway:</strong>
+                <ul className="list-disc pl-4 space-y-1 mt-1 font-sans">
+                  <li><strong>1 &amp; 2:</strong> Match gender exactly with the noun.</li>
+                  <li><strong>3 to 10:</strong> Reverse gender polarity (under Mudaf rule)! Plural genitive count.</li>
+                  <li><strong>11 to 19:</strong> Part 1 &amp; 2 combinations, taking a singular accusative (Fathatain) noun.</li>
+                </ul>
               </div>
             </div>
 
             <div className="bg-slate-900 text-white p-6 rounded-2xl flex flex-col justify-between text-center min-h-[190px]">
               <span className="text-[10px] text-emerald-400 font-mono tracking-widest uppercase block">Resulting Count Expression</span>
-              <div className="inline-block bg-white/5 border border-white/10 px-8 py-4 rounded-xl my-2">
-                <span className="font-serif text-3.5xl font-black block tracking-wide text-emerald-400 leading-normal font-sans">
+              <div className="inline-block bg-white/5 border border-white/10 px-6 py-4 rounded-xl my-2">
+                <span className="font-serif text-3xl font-black block tracking-wide text-emerald-400 leading-normal">
                   {activePhrase}
                 </span>
                 <span className="text-xs text-slate-350 block mt-1 font-mono">Count Word applied: {countRep}</span>
@@ -2233,7 +2237,7 @@ export default function ChapterFocusLab({ chapter }: ChapterFocusLabProps) {
     }
 
     // CHAPTER 19: what-is-a-harf
-    if (slug === 'what-is-a-harf') {
+    if (slug === 'what-is-a-harf' || slug === 'huruf-al-jarr' || slug === 'special-rules-of-huruf') {
       const transitionsList = {
         fi: { ar: 'فِي', eng: 'In', output: targetWord === 'bait' ? 'فِي الْبَيْتِ' : targetWord === 'masjid' ? 'فِي الْمَسْجِدِ' : 'فِي زَيْدٍ' },
         ala: { ar: 'عَلَى', eng: 'On', output: targetWord === 'bait' ? 'عَلَى الْبَيْتِ' : targetWord === 'masjid' ? 'عَلَى الْمَسْجِدِ' : 'عَلَى زَيْدٍ' },
